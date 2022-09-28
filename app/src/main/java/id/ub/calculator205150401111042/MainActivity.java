@@ -2,6 +2,7 @@ package id.ub.calculator205150401111042;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static double x = 0;
     public static String opt = "";
     public static double y = 0;
+    public static String input;
+    public static String hasil=input+String.valueOf(y);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,36 +71,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.b1:
                 et.setText(et.getText().toString().trim() + "1");
+                input = et.getText().toString();
                 break;
             case R.id.b2:
                 et.setText(et.getText().toString().trim() + "2");
+                input = et.getText().toString();
                 break;
             case R.id.b3:
                 et.setText(et.getText().toString().trim() + "3");
+                input = et.getText().toString();
                 break;
             case R.id.b4:
                 et.setText(et.getText().toString().trim() + "4");
+                input = et.getText().toString();
                 break;
             case R.id.b5:
                 et.setText(et.getText().toString().trim() + "5");
+                input = et.getText().toString();
                 break;
             case R.id.b6:
                 et.setText(et.getText().toString().trim() + "6");
+                input = et.getText().toString();
                 break;
             case R.id.b7:
                 et.setText(et.getText().toString().trim() + "7");
+                input = et.getText().toString();
                 break;
             case R.id.b8:
                 et.setText(et.getText().toString().trim() + "8");
+                input = et.getText().toString();
                 break;
             case R.id.b9:
                 et.setText(et.getText().toString().trim() + "9");
+                input = et.getText().toString();
                 break;
             case R.id.b0:
                 et.setText(et.getText().toString().trim() + "0");
+                input = et.getText().toString();
                 break;
 
             case R.id.bp:
@@ -107,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 opt = "tambah";
                 x = Double.parseDouble(et.getText().toString());
+                input += " + ";
                 et.setText("");
                 break;
 
@@ -117,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 opt = "kurang";
                 x = Double.parseDouble(et.getText().toString());
+                input += " - ";
                 et.setText("");
                 break;
 
@@ -127,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 opt = "kali";
                 x = Double.parseDouble(et.getText().toString());
+                input += " x ";
                 et.setText("");
                 break;
 
@@ -137,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 opt = "bagi";
                 x = Double.parseDouble(et.getText().toString());
+                input += " / ";
                 et.setText("");
                 break;
 
@@ -168,6 +186,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     et.setText(String.valueOf(y));
                 }
+                bs.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent in = new Intent(MainActivity.this,MainActivity2.class);
+                        in.putExtra("hasil", hasil);
+                        startActivity(in);
+                    }
+                });
                 break;
         }
     }
